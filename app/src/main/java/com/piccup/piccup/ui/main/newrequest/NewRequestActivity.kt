@@ -21,6 +21,9 @@ class NewRequestActivity : BaseActivity<ActivityNewRequestBinding>() {
 
         replaceFragment(Step1Fragment(), "Step1Fragment")
 
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
 
         viewModel.step.observe(this, Observer {
 
@@ -57,5 +60,13 @@ class NewRequestActivity : BaseActivity<ActivityNewRequestBinding>() {
 
     override fun getLayoutId(): Int {
         return R.layout.activity_new_request
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
     }
 }

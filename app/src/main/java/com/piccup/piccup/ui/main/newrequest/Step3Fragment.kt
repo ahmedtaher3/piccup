@@ -58,12 +58,6 @@ class Step3Fragment : BaseFragment<FragmentStep3Binding>(), PackagesAdapter.OnPa
                         baseActivity.showWarningSnackbar(response.errors?.get(0)?.message!!)
                     } else {
 
-                        binding.types.apply {
-                            layoutManager = GridLayoutManager(
-                                baseActivity,
-                                response.data?.pricePackages?.size!!
-                            )
-                        }
                         binding.types.adapter = adapter
 
                         val list = ArrayList<PackageModel>()
@@ -117,25 +111,8 @@ class Step3Fragment : BaseFragment<FragmentStep3Binding>(), PackagesAdapter.OnPa
             }
         }
 
-        viewModel.packageType.observe(baseActivity) {
-            setData(it)
-        }
 
-    }
 
-    fun setData(model: PackageModel) {
-        Glide
-            .with(baseActivity)
-            .load(model.photo)
-            .centerCrop()
-            .placeholder(R.drawable.ic_place_holder)
-            .into(binding.image);
-
-        binding.perMonth.text =
-            "${model.per_month} ${getString(R.string.egp)}  ${getString(R.string.per_month)}"
-        binding.perYear.text =
-            "${model.per_semester} ${getString(R.string.egp)}  ${getString(R.string.per_semester)}"
-        binding.desc.text = model.description
     }
 
     override fun getLayoutId(): Int {

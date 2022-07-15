@@ -94,6 +94,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="15dp"
+                android:inputType="phone"
                 android:background="@drawable/auth_edittext"
                 android:hint="@string/phone_number"
                 android:padding="10dp"

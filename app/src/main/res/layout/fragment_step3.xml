@@ -42,7 +42,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/next"
+            app:layout_constraintBottom_toTopOf="@+id/send"
             app:layout_constraintTop_toBottomOf="@+id/subTitle"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="16dp">
@@ -57,97 +57,8 @@
                     android:id="@+id/types"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="10dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop" />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/be_where_you_belong"
-                    android:textColor="@color/yellow"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/light"
-                    android:textSize="12dp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="66dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/yellow_rounded2"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/monthly_plan"
-                            android:textColor="@color/white"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/perMonth"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="11dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="66dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/yellow_rounded2"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/semster_plan"
-                            android:textColor="@color/white"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/perYear"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="11dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_marginTop="20dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
             </LinearLayout>

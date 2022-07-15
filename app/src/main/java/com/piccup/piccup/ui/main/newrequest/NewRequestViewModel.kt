@@ -20,21 +20,21 @@ class NewRequestViewModel @Inject constructor(
 ) : BaseViewModel(repository) {
 
     val step = MutableLiveData<Int>(1)
-    val packageType = MutableLiveData<PackageModel>()
+    val packageType = MutableLiveData<PackageModel?>(null)
 
 
     val name = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
     val address = MutableLiveData<String>()
     val comment = MutableLiveData<String>()
-    val lat = MutableLiveData<Double>()
-    val lng = MutableLiveData<Double>()
-    val enterTime = MutableLiveData<String>()
-    val exitTime = MutableLiveData<String>()
-    val section = MutableLiveData<String>()
-    val grade = MutableLiveData<String>()
-    val school = MutableLiveData<GetSchoolsQuery.School>()
-    val city = MutableLiveData<GetCitiesQuery.City>()
+    val lat = MutableLiveData<Double>(0.0)
+    val lng = MutableLiveData<Double>(0.0)
+    val enterTime = MutableLiveData<String>("07:00:00")
+    val exitTime = MutableLiveData<String>("12:00:00")
+    val section = MutableLiveData<String>("")
+    val grade = MutableLiveData<String>("")
+    val school = MutableLiveData<GetSchoolsQuery.School?>(null)
+    val city = MutableLiveData<GetCitiesQuery.City?>(null)
 
 
     val packagesState = MutableLiveData<Status>()

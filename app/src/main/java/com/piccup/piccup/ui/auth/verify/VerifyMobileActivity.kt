@@ -26,4 +26,12 @@ class VerifyMobileActivity : BaseActivity<ActivityVerifyMobileBinding>() {
     override fun getLayoutId(): Int {
         return R.layout.activity_verify_mobile
     }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

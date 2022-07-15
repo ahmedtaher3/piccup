@@ -14,6 +14,7 @@ import com.piccup.piccup.base.BaseFragment
 import com.piccup.piccup.databinding.FragmentStep2Binding
 import com.piccup.piccup.ui.main.newrequest.adapter.*
 import com.piccup.piccup.util.Status
+import com.piccup.piccup.util.extensions.enable
 import com.piccup.piccup.util.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -268,24 +269,32 @@ class Step2Fragment : BaseFragment<FragmentStep2Binding>(), EnterTimeAdapter.OnE
         viewModel.enterTime.postValue(model)
         binding.entryTime.text = model
         enterTimeDialog.dismiss()
+        binding.next.enable(checkButtonsData())
+
     }
 
     override fun setOnExitTimeSelect(model: String) {
         viewModel.exitTime.postValue(model)
         binding.exitTime.text = model
         exitTimeDialog.dismiss()
+        binding.next.enable(checkButtonsData())
+
     }
 
     override fun setOnSectionSelect(model: String) {
         viewModel.section.postValue(model)
         binding.selectSection.setText(model)
         sectionDialog.dismiss()
+        binding.next.enable(checkButtonsData())
+
     }
 
     override fun setOnGradeSelect(model: String) {
         viewModel.grade.postValue(model)
         binding.selectGrade.setText(model)
         gradeDialog.dismiss()
+        binding.next.enable(checkButtonsData())
+
 
     }
 
@@ -293,6 +302,8 @@ class Step2Fragment : BaseFragment<FragmentStep2Binding>(), EnterTimeAdapter.OnE
         viewModel.school.postValue(model)
         binding.selectSchool.setText(model?.name)
         schoolsDialog.dismiss()
+        binding.next.enable(checkButtonsData())
+
     }
 
     override fun setOnCitySelect(model: GetCitiesQuery.City?) {
@@ -300,6 +311,18 @@ class Step2Fragment : BaseFragment<FragmentStep2Binding>(), EnterTimeAdapter.OnE
         binding.cityName.text = model?.name
         cityDialog.dismiss()
         viewModel.getSchools(model?.id!!)
+        binding.next.enable(checkButtonsData())
+    }
+
+    fun checkButtonsData(): Boolean {
+        return !(
+                viewModel.city.value == null ||
+                        viewModel.school.value == null ||
+                        viewModel.grade.value.isNullOrEmpty() ||
+                        viewModel.section.value.isNullOrEmpty() ||
+                        viewModel.enterTime.value.isNullOrEmpty() ||
+                        viewModel.exitTime.value.isNullOrEmpty()
+                )
     }
 
 }

@@ -11,6 +11,8 @@ import androidx.fragment.app.activityViewModels
 import com.piccup.piccup.R
 import com.piccup.piccup.base.BaseFragment
 import com.piccup.piccup.databinding.FragmentStep1Binding
+import com.piccup.piccup.util.extensions.enable
+import com.piccup.piccup.util.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -36,30 +38,27 @@ class Step1Fragment : BaseFragment<FragmentStep1Binding>() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 viewModel.name.postValue(binding.studentName.text.toString())
+                binding.next.enable(checkButtonsData())
             }
         })
-
 
         binding.phoneNumber.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 viewModel.phone.postValue(binding.phoneNumber.text.toString())
+                binding.next.enable(checkButtonsData())
             }
         })
-
 
         binding.address.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 viewModel.address.postValue(binding.address.text.toString())
+                binding.next.enable(checkButtonsData())
             }
         })
-
-
-
-
 
 
         binding.location.setOnClickListener {
@@ -83,10 +82,21 @@ class Step1Fragment : BaseFragment<FragmentStep1Binding>() {
             if (result.resultCode == Activity.RESULT_OK) {
                 // There are no request codes
                 val data: Intent? = result.data
-                viewModel.lat.postValue(data?.getDoubleExtra("LAT" , 0.0)!!)
-                viewModel.lng.postValue(data.getDoubleExtra("LONG" , 0.0))
+                viewModel.lat.postValue(data?.getDoubleExtra("LAT", 0.0)!!)
+                viewModel.lng.postValue(data.getDoubleExtra("LONG", 0.0))
                 binding.location.setText(data.getStringExtra("ADDRESS"))
+                binding.next.enable(checkButtonsData())
             }
         }
+
+
+    fun checkButtonsData(): Boolean {
+        return !(binding.studentName.text.toString().isNullOrEmpty() ||
+                binding.phoneNumber.text.toString().isNullOrEmpty() ||
+                binding.address.text.toString().isNullOrEmpty() ||
+                viewModel.lat.value == 0.0 ||
+                viewModel.lng.value == 0.0
+                )
+    }
 
 }

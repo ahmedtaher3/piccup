@@ -7,11 +7,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.piccup.piccup.R
+import com.piccup.piccup.R.drawable.button
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -77,6 +79,20 @@ private fun getRequestBuilder(
     })
 
 
+fun AppCompatButton.enable(b:Boolean) {
+
+    if (b)
+    {
+        this.isEnabled = true
+        this.setBackgroundResource(R.drawable.button)
+    }else
+    {
+        this.isEnabled = false
+        this.setBackgroundResource(R.drawable.button_disable)
+    }
+
+}
+
 fun View.visible() {
     this.isVisible = true
 }
@@ -92,6 +108,9 @@ fun View.greyLine() {
 fun TextView.greyText() {
     this.setTextColor(Color.parseColor("#727272"))
 }
+fun TextView.blackText() {
+    this.setTextColor(Color.parseColor("#000000"))
+}
 
 fun View.yellowLine() {
     this.setBackgroundColor(Color.parseColor("#F8CD24"))
@@ -101,6 +120,9 @@ fun TextView.yellowText() {
     this.setTextColor(Color.parseColor("#F8CD24"))
 }
 
+fun TextView.greenText() {
+    this.setTextColor(Color.parseColor("#20955C"))
+}
 
 /*
 fun EditText.updatePasswordVisibility(visibilityImage: ImageView) {
