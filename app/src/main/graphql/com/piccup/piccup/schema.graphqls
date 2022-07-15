@@ -1,0 +1,1583 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Admin {
+    avatar: String
+    email: String
+    id: ID
+    is_super_admin: Boolean
+    name: String
+    phone: String
+    role: Role
+    status: String
+}
+
+type AdminAuthPayload {
+    access_token: String
+    admin: Admin
+}
+
+type BusinessTrip {
+    days: TripDays
+    distance: Int
+    driver: Driver
+    due_date: String
+    duration: Int
+    end_date: String
+    group_chat: Boolean
+    id: ID
+    is_absent: Boolean
+    log_id: String
+    name: String
+    payable: Float
+    price: Float
+    ready_at: String
+    return_time: String
+    start_date: String
+    starts_at: String
+    stations: [BusinessTripStation]
+    subscription_id: ID
+    supervisor: Supervisor
+    users: [User]
+    vehicle: Vehicle
+}
+
+type BusinessTripAppTransaction {
+    admin: Admin
+    amount: Float
+    created_at: String
+    due_date: String
+    id: ID
+    notes: String
+    payment_method: String
+    subscription_id: ID
+    trip: BusinessTrip
+    trx_id: ID
+    user: User
+}
+
+"A paginated list of BusinessTripAppTransaction items."
+type BusinessTripAppTransactionPaginator {
+    "A list of BusinessTripAppTransaction items."
+    data: [BusinessTripAppTransaction!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type BusinessTripAttendance {
+    avatar: String
+    comment: String
+    id: ID
+    is_absent: Boolean
+    name: String
+    phone: String
+}
+
+type BusinessTripChat {
+    created_at: String
+    id: ID
+    message: String
+    sender: Sender!
+    sender_type: String
+    time: String
+}
+
+type BusinessTripEvent {
+    content: TripEventContent
+    created_at: String
+    driver: Driver
+    log_id: String
+    map_url: String
+    supervisor: Supervisor
+    trip: BusinessTrip
+    trip_time: String
+    updated_at: String
+}
+
+"A paginated list of BusinessTripEvent items."
+type BusinessTripEventPaginator {
+    "A list of BusinessTripEvent items."
+    data: [BusinessTripEvent!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+"A paginated list of BusinessTripEvent items."
+type BusinessTripEventSimplePaginator {
+    "A list of BusinessTripEvent items."
+    data: [BusinessTripEvent!]!
+    "Pagination information about the list of items."
+    paginatorInfo: SimplePaginatorInfo!
+}
+
+"A paginated list of BusinessTrip items."
+type BusinessTripPaginator {
+    "A list of BusinessTrip items."
+    data: [BusinessTrip!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type BusinessTripRating {
+    comment: String
+    driver_id: ID
+    id: ID
+    log_id: String
+    rating: Float
+    trip_id: ID
+    user_id: ID
+}
+
+type BusinessTripSchedule {
+    days: UserDays
+}
+
+type BusinessTripStation {
+    created_at: String
+    distance: Int
+    duration: Int
+    id: ID
+    is_my_destination: Boolean
+    is_my_station: Boolean
+    latitude: Float
+    longitude: Float
+    name: String
+    order: Int
+    state: String
+    users: [User]
+}
+
+type BusinessTripSubbedUser {
+    avatar: String
+    destination_id: ID
+    destination_name: String
+    due_date: String
+    id: ID
+    name: String
+    payable: Float
+    phone: String
+    station_id: ID
+    station_name: String
+    station_type: String
+    subscription_verified_at: String
+}
+
+type BusinessTripSubscription {
+    created_at: String
+    dropoff: BusinessTripStation
+    due_date: String
+    id: ID
+    payable: Float
+    pickup: BusinessTripStation
+    subscription_verified_at: String
+    trip: BusinessTrip
+    user: User
+}
+
+"A paginated list of BusinessTripSubscription items."
+type BusinessTripSubscriptionPaginator {
+    "A list of BusinessTripSubscription items."
+    data: [BusinessTripSubscription!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type CarMake {
+    id: ID
+    models: [CarModel]
+    name: String
+}
+
+type CarModel {
+    id: ID
+    make: CarMake
+    name: String
+    photo: String
+    type: CarType
+}
+
+type CarType {
+    id: ID
+    name: String
+    photo: String
+}
+
+type City {
+    id: ID
+    name: String
+}
+
+type DefaultResponse {
+    message: String
+    status: Boolean!
+}
+
+type Document {
+    created_at: String
+    documentable_id: ID
+    documentable_type: String
+    expires_on: String
+    id: ID
+    name: String
+    updated_at: String
+    url: String
+}
+
+type Driver {
+    avatar: String
+    city: City
+    code: String
+    created_at: String
+    documents: [Document]
+    email: String
+    id: ID
+    latitude: Float
+    longitude: Float
+    name: String
+    phone: String
+    rating: Float
+    status: Boolean
+    trips: [BusinessTrip]
+    updated_at: String
+    vehicles: [Vehicle]
+}
+
+type DriverAuthPayload {
+    access_token: String
+    driver: Driver
+}
+
+"A paginated list of Driver items."
+type DriverPaginator {
+    "A list of Driver items."
+    data: [Driver!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type EventObj {
+    at: String
+    by: String
+    eta: String
+    lat: Float
+    lng: Float
+    station_id: ID
+    station_name: String
+    status: String
+    user_id: ID
+    user_name: String
+}
+
+type Follower {
+    avatar: String
+    id: ID
+    name: String
+    trip: BusinessTrip
+}
+
+type Mutation {
+    activateDriverVehicle(driver_id: ID!, vehicle_id: ID!): Vehicle
+    addRequestToBusinessTrip(input: AddRequestToBusinessTripInput!): Boolean
+    adminLogin(input: LoginInput!): AdminAuthPayload!
+    assignBusinessTripStationUser(input: AssignBusinessTripStationUserInput!): Boolean
+    atBusinessTripStation(input: AtTripStationInput!): Boolean
+    changeAdminPassword(input: ChangePasswordInput): AdminAuthPayload
+    changeBusinessTripAttendanceStatus(input: ChangeBusinessTripAttendanceStatusInput!): Boolean
+    changeBusinessTripPickupStatus(input: ChangeBusinessTripPickupStatusInput!): Boolean
+    changeDriverPassword(input: ChangePasswordInput): DefaultResponse
+    changeSchoolRequestStatus(input: ChangeSchoolRequestStatusInput!): String
+    changeUserPassword(input: ChangePasswordInput): DefaultResponse
+    copyBusinessTrip(input: CopyBusinessTripInput!): BusinessTrip
+    createAdmin(input: CreateAdminInput!): Admin
+    createBusinessTrip(input: CreateBusinessTripInput!): BusinessTrip
+    createBusinessTripAppTransaction(input: CreateBusinessTripAppTransactionInput!): BusinessTripAppTransaction
+    createBusinessTripAttendance(input: CreateBusinessTripAttendanceInput!): Boolean
+    createBusinessTripFollower(input: CreateBusinessTripFollowerInput!): Boolean
+    createBusinessTripFromRequest(input: CreateBusinessTripFromRequestInput!): Boolean
+    createBusinessTripStation(input: CreateBusinessTripStationInput!): BusinessTripStation
+    createBusinessTripSubscription(input: CreateBusinessTripSubscriptionInput!): Boolean
+    createCarMake(input: CreateCarMakeInput!): CarMake
+    createCarModel(input: CreateCarModelInput!): CarModel
+    createCarType(input: CreateCarTypeInput!): CarType
+    createCity(input: CreateCityInput!): City
+    createDriver(input: CreateDriverInput!): Driver
+    createDriverVehicle(input: DriverVehicleInput!): DefaultResponse!
+    createMultipleUsers(input: CreateMultipleUsersInput!): Boolean
+    createPricePackage(input: CreatePricePackageInput!): PricePackage
+    createRole(input: CreateRoleInput!): Role
+    createSchool(input: CreateSchoolInput!): School
+    createSchoolRequest(input: CreateSchoolRequestInput!): SchoolRequest
+    createSupervisor(input: CreateSupervisorInput!): Supervisor
+    createUser(input: CreateUserInput!): UserPayload!
+    createUserTransaction(input: CreateUserTransactionInput!): UserTransaction
+    createVehicle(input: CreateVehicleInput!): Vehicle
+    createZone(input: CreateZoneInput!): Zone
+    deleteAdmin(id: ID!): Admin
+    deleteBusinessTrip(id: ID!): BusinessTrip
+    deleteBusinessTripAppTransaction(id: [ID!]!): Boolean
+    deleteBusinessTripEvent(log_id: [String!]!): Boolean
+    deleteBusinessTripFollower(id: ID!): Boolean
+    deleteBusinessTripStation(id: ID!): BusinessTripStation
+    deleteBusinessTripSubscription(input: DeleteBusinessTripSubscriptionInput!): Boolean
+    deleteCarMake(id: ID!): CarMake
+    deleteCarModel(id: ID!): CarModel
+    deleteCarType(id: ID!): CarType
+    deleteCity(id: ID!): City
+    deleteDocument(id: ID!): String
+    deleteDriver(id: [ID!]!): Boolean
+    deleteDriverVehicle(input: DriverVehicleInput!): DefaultResponse!
+    deletePricePackage(id: ID!): PricePackage
+    deleteRole(id: ID!): Role
+    deleteSchool(id: [ID!]!): Boolean
+    deleteSchoolRequest(id: [ID!]!): String
+    deleteSupervisor(id: ID!): Supervisor
+    deleteUser(id: [ID!]!): Boolean
+    deleteVehicle(id: ID!): Vehicle
+    deleteZone(id: ID!): Zone
+    driverLogin(input: LoginInput!): DriverAuthPayload!
+    dropBusinessTripUsers(input: SelectBusinessTripUsersInput!): Boolean
+    endBusinessTrip(input: EndTripInput!): Boolean
+    pickBusinessTripUsers(input: SelectBusinessTripUsersInput!): Boolean
+    readyBusinessTrip(input: ReadyTripInput!): BusinessTrip
+    reorder(input: UpdateOrderInput!): Boolean
+    rescheduleUserBusinessTrip(input: BusinessTripScheduleInput!): Boolean
+    resetPasswordById(input: ResetPasswordByIdInput): DefaultResponse
+    resetPasswordWithOtp(input: ResetPasswordWithOtpInput): DefaultResponse
+    sendBusinessTripChatMessage(input: SendBusinessTripChatMessageInput!): BusinessTripChat
+    sendDirectMessage(input: SendDirectMessageInput!): String
+    startBusinessTrip(input: StartTripInput!): BusinessTrip
+    updateAdmin(input: UpdateAdminInput!): Admin
+    updateBusinessTrip(input: UpdateBusinessTripInput!): BusinessTrip
+    updateBusinessTripDriverLocation(input: UpdateTripDriverLocationInput!): Boolean
+    updateBusinessTripRating(input: UpdateBusinessTripRatingInput!): BusinessTripRating
+    updateBusinessTripRoute(input: UpdateTripRouteInput!): BusinessTrip
+    updateBusinessTripStation(input: UpdateBusinessTripStationInput!): BusinessTripStation
+    updateCarMake(input: UpdateCarMakeInput!): CarMake
+    updateCarModel(input: UpdateCarModelInput!): CarModel
+    updateCarType(input: UpdateCarTypeInput!): CarType
+    updateCity(input: UpdateCityInput!): City
+    updateDocument(input: UpdateDocumentInput!): Document
+    updateDriver(input: UpdateDriverInput!): Driver
+    updatePricePackage(input: UpdatePricePackageInput!): PricePackage
+    updateRole(input: UpdateRoleInput!): Role
+    updateSchool(input: UpdateSchoolInput!): School
+    updateSchoolRequest(input: UpdateSchoolRequestInput!): SchoolRequest
+    updateSettings(input: UpdateSettingsInput!): Settings
+    updateSupervisor(input: UpdateSupervisorInput!): Supervisor
+    updateUser(input: UpdateUserInput!): User
+    updateVehicle(input: UpdateVehicleInput!): Vehicle
+    updateZone(input: UpdateZoneInput!): Zone
+    uploadDocument(input: UploadDocumentInput): Document
+    userLogin(input: LoginInput!): UserPayload!
+    userPhoneVerification(input: UserPhoneVerificationInput!): UserPhoneVerifyPayload!
+    userSocialLogin(input: SocialLoginInput!): UserPayload!
+    verifyBusinessTripSubscription(input: VerifyBusinessTripSubscriptionInput!): Boolean
+}
+
+"Information about pagination using a Relay style cursor connection."
+type PageInfo {
+    "Number of nodes in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "The cursor to continue paginating forwards."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "Index of the last available page."
+    lastPage: Int!
+    "The cursor to continue paginating backwards."
+    startCursor: String
+    "Total number of nodes in the paginated connection."
+    total: Int!
+}
+
+"Information about pagination using a fully featured paginator."
+type PaginatorInfo {
+    "Number of items in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "Index of the first item in the current page."
+    firstItem: Int
+    "Are there more pages after this one?"
+    hasMorePages: Boolean!
+    "Index of the last item in the current page."
+    lastItem: Int
+    "Index of the last available page."
+    lastPage: Int!
+    "Number of items per page."
+    perPage: Int!
+    "Number of total available items."
+    total: Int!
+}
+
+type PermissionAction {
+    read: Boolean
+    write: Boolean
+}
+
+type PricePackage {
+    city: City
+    description: String
+    id: ID
+    is_public: Boolean
+    name: String
+    order: Int
+    per_month: String
+    per_semester: String
+    photo: String
+}
+
+type Query {
+    admin(id: ID): Admin
+    admins: [Admin]
+    allSchools(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String
+    ): SchoolPaginator
+    authAdmin: Admin
+    authDriver: Driver
+    authUser: User
+    businessTrip(id: ID): BusinessTrip
+    businessTripAppTransactions(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        period: String,
+        searchFor: String,
+        searchQuery: String,
+        trip_id: ID
+    ): BusinessTripAppTransactionPaginator
+    businessTripAttendance(date: String, trip_id: ID!): [BusinessTripAttendance]
+    businessTripChatMessages(is_private: Boolean, log_id: String!, user_id: ID): [BusinessTripChat]
+    businessTripEvents(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        period: String,
+        searchFor: String,
+        searchQuery: String,
+        trip_id: ID
+    ): BusinessTripEventPaginator
+    businessTripPrivateChatUsers(log_id: String!): [User]
+    businessTripRatings(log_id: String!): [BusinessTripRating]
+    businessTripSchedule(trip_id: ID!, user_id: ID!): BusinessTripSchedule
+    businessTripStationUsers(station_id: ID!, status: String!, trip_id: ID!): [User]
+    businessTripStations(trip_id: ID!): [BusinessTripStation]
+    businessTripSubscribedUsers(trip_id: ID!): [BusinessTripSubbedUser]
+    businessTripSubscribers(station_id: ID, status: String!, trip_id: ID!): [User]
+    businessTripSubscription(id: ID!): BusinessTripSubscription
+    businessTripSubscriptions(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String,
+        shouldRenew: Boolean
+    ): BusinessTripSubscriptionPaginator
+    businessTripUnsubscribedUsers(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String,
+        trip_id: ID!
+    ): UserPaginator
+    businessTripUserStatus(trip_id: ID!, user_id: ID!): User
+    businessTripUsersStatus(station_id: ID, trip_id: ID): [User]
+    businessTrips(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String,
+        "Allows to filter if trashed elements should be fetched."
+        trashed: Trashed
+    ): BusinessTripPaginator
+    carMake(id: ID): CarMake
+    carMakeModels(make_id: ID): [CarModel]
+    carMakes: [CarMake]
+    carModel(id: ID): CarModel
+    carModels: [CarModel]
+    carType(id: ID): CarType
+    carTypes: [CarType]
+    cities: [City]
+    cityBusinessTrips: [BusinessTrip]
+    cityDrivers: [Driver]
+    documents(documentable_id: ID!, documentable_type: String!): [Document]
+    driver(id: ID): Driver
+    driverActiveVehicle(driver_id: ID!): Vehicle
+    driverAssignedVehicles(driver_id: ID!): [Vehicle]
+    driverBusinessTripSchedule(day: String!, driver_id: ID!): [BusinessTrip]
+    driverBusinessTrips(driver_id: ID!): [BusinessTrip]
+    driverLiveBusinessTrips(driver_id: ID!): [BusinessTrip]
+    driverNotAssignedVehicles(
+        driver_id: ID!,
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String
+    ): VehiclePaginator
+    drivers(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String
+    ): DriverPaginator
+    followerBusinessTrips(follower_id: ID!): [BusinessTrip]
+    fundTransactions(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        period: String,
+        searchFor: String,
+        searchQuery: String,
+        service: String
+    ): UserTransactionPaginator
+    liveBusinessTrips: [BusinessTrip]
+    pricePackages(city_id: ID, is_public: Boolean): [PricePackage]
+    role(id: ID): Role
+    roles: [Role]
+    school(id: ID!): School
+    schoolRequest(id: ID!): SchoolRequest
+    schoolRequests(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        period: String,
+        searchFor: String,
+        searchQuery: String,
+        status: String!,
+        zone_id: [ID]
+    ): SchoolRequestPaginator
+    schoolRequestsArchive(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        period: String,
+        searchFor: String,
+        searchQuery: String
+    ): SchoolRequestPaginator
+    schools(city_id: ID, zone_id: ID): [School]
+    settings: [Settings]
+    supervisor(id: ID): Supervisor
+    supervisors: [Supervisor]
+    unratedBusinessTrips(user_id: ID!): [BusinessTrip]
+    unreadyBusinessTrips(date: String!): [BusinessTrip]
+    user(id: ID): User
+    userBusinessTripHistory(
+        "Limits number of fetched items."
+        first: Int = 10,
+        "The offset from which items are returned."
+        page: Int,
+        user_id: ID!
+    ): BusinessTripEventSimplePaginator
+    userBusinessTripSchedule(day: String!, user_id: ID!): [BusinessTrip]
+    userBusinessTripSubscriptions(user_id: ID!): [BusinessTrip]
+    userFollowers(user_id: ID!): [Follower]
+    userFundTransactions(user_id: ID!): [UserTransaction]
+    userLiveBusinessTrips(user_id: ID!): [BusinessTrip]
+    userSchoolRequests(user_id: ID!): [SchoolRequest]
+    users(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String
+    ): UserPaginator
+    vehicle(id: ID): Vehicle
+    vehicles(
+        "Limits number of fetched items."
+        first: Int = 50,
+        "The offset from which items are returned."
+        page: Int,
+        searchFor: String,
+        searchQuery: String
+    ): VehiclePaginator
+    zone(id: ID!): Zone
+    zones(orderBy: [QueryZonesOrderByOrderByClause!]): [Zone]
+}
+
+type Role {
+    id: ID
+    name: String
+    permissions: RolePermission
+}
+
+type RolePermission {
+    admins: PermissionAction
+    drivers: PermissionAction
+    reports: PermissionAction
+    rides: PermissionAction
+    settings: PermissionAction
+    users: PermissionAction
+    vehicles: PermissionAction
+}
+
+type School {
+    address: String
+    id: ID
+    latitude: Float
+    longitude: Float
+    name: String
+    zone: Zone
+}
+
+"A paginated list of School items."
+type SchoolPaginator {
+    "A list of School items."
+    data: [School!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type SchoolRequest {
+    city_id: ID
+    comment: String
+    contact_phone: String
+    created_at: String
+    enter_time: String
+    exit_time: String
+    id: ID
+    level: String
+    pickup_address: String
+    pickup_lat: Float
+    pickup_lng: Float
+    pricePackage: PricePackage
+    response: String
+    school: School
+    section: String
+    status: String
+    student_name: String
+    updated_at: String
+    user: User
+    user_id: ID
+}
+
+"A paginated list of SchoolRequest items."
+type SchoolRequestPaginator {
+    "A list of SchoolRequest items."
+    data: [SchoolRequest!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type Sender {
+    id: ID
+    name: String
+}
+
+type Settings {
+    content: String
+    created_at: String
+    id: ID
+    name: String
+    unit: String
+    updated_at: String
+    value: Float
+}
+
+"Information about pagination using a simple paginator."
+type SimplePaginatorInfo {
+    "Number of items in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "Index of the first item in the current page."
+    firstItem: Int
+    "Index of the last item in the current page."
+    lastItem: Int
+    "Number of items per page."
+    perPage: Int!
+}
+
+type Supervisor {
+    avatar: String
+    created_at: String
+    documents: [Document]
+    id: ID
+    name: String
+    phone: String
+}
+
+type TripDays {
+    friday: String
+    monday: String
+    saturday: String
+    sunday: String
+    thursday: String
+    tuesday: String
+    wednesday: String
+}
+
+type TripEventContent {
+    ended: EventObj
+    payload: [EventObj]
+    ready: EventObj
+    started: EventObj
+}
+
+type User {
+    avatar: String
+    created_at: String
+    device_id: String
+    email: String
+    id: ID
+    insurance_balance: Float
+    is_absent: Boolean
+    is_picked_up: Boolean
+    latitude: Float
+    longitude: Float
+    name: String
+    nfc_balance: Float
+    phone: String
+    phone_verified_at: String
+    rating: Float
+    ref_code: String
+    station_type: String
+    title: String
+    updated_at: String
+    wallet_balance: Float
+}
+
+type UserDays {
+    friday: Boolean
+    monday: Boolean
+    saturday: Boolean
+    sunday: Boolean
+    thursday: Boolean
+    tuesday: Boolean
+    wednesday: Boolean
+}
+
+"A paginated list of User items."
+type UserPaginator {
+    "A list of User items."
+    data: [User!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type UserPayload {
+    access_token: String
+    user: User
+}
+
+type UserPhoneVerifyPayload {
+    verificationCode: String
+}
+
+type UserTransaction {
+    admin: Admin
+    amount: Float
+    created_at: String
+    id: ID
+    notes: String
+    source: String
+    trx_id: ID
+    type: String
+    user: User
+}
+
+"A paginated list of UserTransaction items."
+type UserTransactionPaginator {
+    "A list of UserTransaction items."
+    data: [UserTransaction!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type Vehicle {
+    code: String
+    documents: [Document]
+    id: ID
+    license_plate: String
+    make: CarMake
+    model: CarModel
+    photo: String
+    seats: Int
+    type: CarType
+    year: Int
+}
+
+"A paginated list of Vehicle items."
+type VehiclePaginator {
+    "A list of Vehicle items."
+    data: [Vehicle!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+type Zone {
+    city: City
+    description: String
+    id: ID
+    name: String
+    schools: [School]
+}
+
+"Allowed column names for the `orderBy` argument on field `zones` on type `Query`."
+enum QueryZonesOrderByColumn {
+    CITY_ID
+}
+
+"The available directions for ordering a list of records."
+enum SortOrder {
+    "Sort records in ascending order."
+    ASC
+    "Sort records in descending order."
+    DESC
+}
+
+"Specify if you want to include or exclude trashed results from a query."
+enum Trashed {
+    "Only return trashed results."
+    ONLY
+    "Return both trashed and non-trashed results."
+    WITH
+    "Only return non-trashed results."
+    WITHOUT
+}
+
+input AddRequestToBusinessTripInput {
+    destination_id: ID
+    destinations: [BusinessTripDestinationsInput]
+    price: Float
+    request_ids: [ID]!
+    station_id: ID
+    trip_id: ID!
+    users: [BusinessTripUsersInput]
+}
+
+input AssignBusinessTripStationUserInput {
+    destination_id: ID!
+    station_id: ID!
+    trip_id: ID!
+    user_id: ID!
+}
+
+input AtTripStationInput {
+    eta: String!
+    latitude: Float!
+    log_id: String!
+    longitude: Float!
+    station_id: ID!
+    station_name: String!
+    trip_id: ID!
+    trip_name: String!
+}
+
+input BusinessTripDestinationsInput {
+    id: ID
+    lat: Float
+    lng: Float
+    name: String
+}
+
+input BusinessTripScheduleInput {
+    days: UserDaysInput!
+    trip_id: ID!
+    user_id: ID!
+}
+
+input BusinessTripUsersInput {
+    address: String
+    days: UserDaysInput
+    destination: String
+    id: ID
+    lat: Float
+    lng: Float
+    request_id: ID
+}
+
+input ChangeBusinessTripAttendanceStatusInput {
+    by: String!
+    date: String!
+    driver_id: ID!
+    is_absent: Boolean!
+    latitude: Float!
+    log_id: String!
+    longitude: Float!
+    trip_id: ID!
+    trip_name: String!
+    user_id: ID!
+    user_name: String!
+}
+
+input ChangeBusinessTripPickupStatusInput {
+    driver_id: ID!
+    is_picked_up: Boolean!
+    latitude: Float!
+    log_id: String!
+    longitude: Float!
+    trip_id: ID!
+    trip_name: String!
+    user_id: ID!
+    user_name: String!
+}
+
+input ChangePasswordInput {
+    current_password: String!
+    id: ID!
+    new_password: String!
+    new_password_confirmation: String!
+}
+
+input ChangeSchoolRequestStatusInput {
+    notify: Boolean
+    requestIds: [ID!]!
+    response: String
+    status: String!
+    users: [SchoolRequestStatusUsers]
+}
+
+input CopyBusinessTripInput {
+    id: ID!
+    include_stations: Boolean!
+    include_subscriptions: Boolean!
+    name: String!
+}
+
+input CreateAdminInput {
+    avatar: Upload
+    email: String!
+    name: String!
+    phone: String!
+    role_id: ID!
+}
+
+input CreateBusinessTripAppTransactionInput {
+    admin_id: ID
+    amount: Float!
+    due_date: String!
+    notes: String
+    payment_method: String!
+    subscription_id: ID!
+    trip_id: ID!
+    trx_id: ID
+    user_id: ID!
+}
+
+input CreateBusinessTripAttendanceInput {
+    comment: String
+    date: String!
+    is_absent: Boolean
+    trip_id: ID!
+    user_id: ID!
+}
+
+input CreateBusinessTripFollowerInput {
+    follower_id: ID!
+    trip_id: ID!
+    user_id: ID!
+}
+
+input CreateBusinessTripFromRequestInput {
+    days: TripDaysInput!
+    destinations: [BusinessTripDestinationsInput]!
+    driver_id: ID
+    end_date: String!
+    group_chat: Boolean
+    name: String!
+    price: Float
+    request_ids: [ID]!
+    return_time: String
+    start_date: String!
+    supervisor_id: ID
+    users: [BusinessTripUsersInput]!
+    vehicle_id: ID
+}
+
+input CreateBusinessTripInput {
+    days: TripDaysInput!
+    driver_id: ID
+    end_date: String!
+    group_chat: Boolean
+    name: String!
+    price: Float
+    return_time: String
+    start_date: String!
+    supervisor_id: ID
+    vehicle_id: ID
+}
+
+input CreateBusinessTripStationInput {
+    latitude: Float!
+    longitude: Float!
+    name: String
+    order: Int!
+    request_id: ID
+    state: String
+    trip_id: ID
+}
+
+input CreateBusinessTripSubscriptionInput {
+    destination_id: ID!
+    due_date: String
+    payable: Float!
+    station_id: ID!
+    trip_id: ID!
+    user_id: [ID!]!
+}
+
+input CreateCarMakeInput {
+    name: String!
+}
+
+input CreateCarModelInput {
+    make_id: ID!
+    name: String!
+    photo: Upload
+    type_id: ID!
+}
+
+input CreateCarTypeInput {
+    name: String!
+    photo: Upload
+}
+
+input CreateCityInput {
+    name: String!
+}
+
+input CreateDriverInput {
+    avatar: Upload
+    city_id: ID
+    code: String
+    email: String
+    name: String!
+    password: String
+    phone: String
+    status: Boolean
+}
+
+input CreateMultipleUsersInput {
+    payable: Float
+    trip_id: ID
+    users: [UserFromFileInput]!
+}
+
+input CreatePricePackageInput {
+    description: String
+    is_public: Boolean
+    name: String!
+    order: Int!
+    per_month: String!
+    per_semester: String!
+    photo: Upload
+}
+
+input CreateRoleInput {
+    name: String!
+    permissions: RolePermissionInput!
+}
+
+input CreateSchoolInput {
+    address: String
+    city_id: ID
+    latitude: Float!
+    longitude: Float!
+    name: String!
+    zone_id: ID
+}
+
+input CreateSchoolRequestInput {
+    city_id: ID!
+    comment: String
+    contact_phone: String!
+    enter_time: String!
+    exit_time: String!
+    level: String!
+    pickup_address: String!
+    pickup_lat: Float!
+    pickup_lng: Float!
+    price_package_id: ID!
+    school_id: ID!
+    section: String!
+    status: String
+    student_name: String!
+    user_id: ID!
+}
+
+input CreateSettingsInput {
+    content: String
+    name: String!
+    unit: String
+    value: Float
+}
+
+input CreateSupervisorInput {
+    avatar: Upload
+    name: String!
+    phone: String!
+}
+
+input CreateUserInput {
+    avatar: Upload
+    device_id: String
+    email: String
+    name: String!
+    nfc_balance: Float
+    password: String
+    payable: Float
+    phone: String
+    platform: String
+    provider: String
+    provider_id: String
+    ref_code: String
+    title: String
+    trip_id: ID
+}
+
+input CreateUserTransactionInput {
+    admin_id: ID
+    amount: Float!
+    notes: String
+    trx_id: ID
+    type: String!
+    user_id: ID!
+}
+
+input CreateVehicleInput {
+    car_make_id: ID!
+    car_model_id: ID!
+    car_type_id: ID!
+    code: String
+    license_plate: String!
+    photo: Upload
+    seats: Int!
+    year: Int!
+}
+
+input CreateZoneInput {
+    city_id: ID!
+    description: String
+    name: String
+}
+
+input DeleteBusinessTripSubscriptionInput {
+    trip_id: ID!
+    user_id: [ID!]!
+}
+
+input DriverVehicleInput {
+    driver_id: ID!
+    vehicle_id: [ID!]!
+}
+
+input EndTripInput {
+    latitude: Float
+    log_id: String
+    longitude: Float
+    trip_id: ID!
+}
+
+input ForgotPasswordInput {
+    email: String!
+    type: String!
+}
+
+input InviteBusinessTripUserInput {
+    trip_id: ID!
+    trip_name: String!
+    user_id: [ID!]!
+}
+
+input LoginInput {
+    device_id: String
+    emailOrPhone: String!
+    password: String!
+    platform: String
+}
+
+input NewPasswordWithCodeInput {
+    email: String!
+    password: String!
+    password_confirmation: String!
+    token: String!
+    type: String!
+}
+
+"Allows ordering a list of records."
+input OrderByClause {
+    "The column that is used for ordering."
+    column: String!
+    "The direction that is used for ordering."
+    order: SortOrder!
+}
+
+input OrderInput {
+    id: ID!
+    order: Int!
+}
+
+input PermissionActionInput {
+    read: Boolean
+    write: Boolean
+}
+
+"Order by clause for the `orderBy` argument on the query `zones`."
+input QueryZonesOrderByOrderByClause {
+    "The column that is used for ordering."
+    column: QueryZonesOrderByColumn!
+    "The direction that is used for ordering."
+    order: SortOrder!
+}
+
+input ReadyTripInput {
+    latitude: Float!
+    longitude: Float!
+    trip_id: ID!
+    trip_time: String!
+}
+
+input ResetPasswordByIdInput {
+    id: ID!
+    model: String!
+    password: String!
+    password_confirmation: String!
+}
+
+input ResetPasswordWithOtpInput {
+    model: String!
+    password: String!
+    password_confirmation: String!
+    phone: String!
+}
+
+input RolePermissionInput {
+    admins: PermissionActionInput!
+    drivers: PermissionActionInput!
+    reports: PermissionActionInput!
+    rides: PermissionActionInput!
+    settings: PermissionActionInput!
+    users: PermissionActionInput!
+    vehicles: PermissionActionInput!
+}
+
+input RouteInput {
+    distance: Int
+    duration: Int
+    id: ID!
+    order: Int
+}
+
+input SchoolRequestStatusUsers {
+    requestId: ID!
+    userId: ID!
+}
+
+input SelectBusinessTripUsersInput {
+    driver_id: ID!
+    latitude: Float!
+    log_id: String!
+    longitude: Float!
+    trip_id: ID!
+    trip_name: String!
+    trip_time: String!
+    users: [UserObj]
+}
+
+input SendBusinessTripChatMessageInput {
+    driver_id: ID
+    log_id: String!
+    message: String!
+    recipient_id: ID
+    sender_id: ID!
+    sender_type: String!
+    trip_id: ID!
+    trip_name: String!
+}
+
+input SendDirectMessageInput {
+    all: Boolean
+    email: Boolean!
+    message: String!
+    push: Boolean!
+    recipient_id: [ID!]!
+    recipient_type: String!
+    sms: Boolean!
+    title: String!
+}
+
+input SocialLoginInput {
+    device_id: String
+    platform: String
+    provider: String!
+    token: String!
+}
+
+input StartTripInput {
+    latitude: Float!
+    longitude: Float!
+    trip_id: ID!
+    trip_time: String!
+}
+
+input TripDaysInput {
+    friday: String
+    monday: String
+    saturday: String
+    sunday: String
+    thursday: String
+    tuesday: String
+    wednesday: String
+}
+
+input UpdateAdminInput {
+    avatar: Upload
+    email: String
+    id: ID
+    name: String
+    phone: String
+    role_id: ID
+}
+
+input UpdateBusinessTripInput {
+    days: TripDaysInput
+    driver_id: ID
+    end_date: String
+    group_chat: Boolean
+    id: ID!
+    name: String
+    price: Float
+    return_time: String
+    start_date: String
+    supervisor_id: ID
+    vehicle_id: ID
+}
+
+input UpdateBusinessTripRatingInput {
+    driver_id: ID
+    id: ID
+    log_id: String
+    rating: Float
+    trip_id: ID
+    user_id: ID
+}
+
+input UpdateBusinessTripStationInput {
+    id: ID!
+    latitude: Float
+    longitude: Float
+    name: String
+    state: String
+    trip_id: ID
+}
+
+input UpdateCarMakeInput {
+    id: ID
+    name: String
+}
+
+input UpdateCarModelInput {
+    id: ID!
+    make_id: ID
+    name: String
+    photo: Upload
+    type_id: ID
+}
+
+input UpdateCarTypeInput {
+    id: ID
+    name: String
+    photo: Upload
+}
+
+input UpdateCityInput {
+    id: ID
+    name: String!
+}
+
+input UpdateDocumentInput {
+    expires_on: String
+    id: ID!
+    name: String
+}
+
+input UpdateDriverInput {
+    avatar: Upload
+    city_id: ID
+    code: String
+    device_id: String
+    email: String
+    id: ID
+    latitude: Float
+    longitude: Float
+    name: String
+    phone: String
+    status: Boolean
+}
+
+input UpdateOrderInput {
+    model: String!
+    orders: [OrderInput!]!
+}
+
+input UpdatePricePackageInput {
+    description: String
+    id: ID!
+    is_public: Boolean
+    name: String
+    per_month: String
+    per_semester: String
+    photo: Upload
+}
+
+input UpdateRoleInput {
+    id: ID
+    name: String
+    permissions: RolePermissionInput
+}
+
+input UpdateSchoolInput {
+    address: String
+    city_id: ID
+    id: ID!
+    latitude: Float
+    longitude: Float
+    name: String
+    zone_id: ID
+}
+
+input UpdateSchoolRequestInput {
+    comment: String
+    contact_phone: String
+    enter_time: String
+    exit_time: String
+    id: ID!
+    level: String
+    pickup_address: String
+    pickup_lat: Float
+    pickup_lng: Float
+    price_package_id: ID
+    response: String
+    school_id: ID
+    section: String
+    status: String
+    student_name: String
+}
+
+input UpdateSettingsInput {
+    content: String
+    id: ID!
+    unit: String
+    value: Float
+}
+
+input UpdateSupervisorInput {
+    avatar: Upload
+    id: ID
+    name: String
+    phone: String
+}
+
+input UpdateTripDriverLocationInput {
+    latitude: Float!
+    log_id: String!
+    longitude: Float!
+}
+
+input UpdateTripRouteInput {
+    route: String!
+    stations: [RouteInput!]!
+    trip_id: ID!
+}
+
+input UpdateUserInput {
+    avatar: Upload
+    device_id: String
+    email: String
+    id: ID
+    name: String
+    nfc_balance: Float
+    phone: String
+    phone_verified_at: String
+    title: String
+    wallet_balance: Float
+}
+
+input UpdateVehicleInput {
+    car_make_id: ID
+    car_model_id: ID
+    car_type_id: ID
+    code: String
+    id: ID
+    license_plate: String
+    photo: Upload
+    seats: Int
+    year: Int
+}
+
+input UpdateZoneInput {
+    city_id: ID
+    description: String
+    id: ID!
+    name: String
+}
+
+input UploadDocumentInput {
+    documentable_id: ID!
+    documentable_type: String!
+    expires_on: String
+    file: Upload!
+    name: String
+}
+
+input UserDaysInput {
+    friday: Boolean
+    monday: Boolean
+    saturday: Boolean
+    sunday: Boolean
+    thursday: Boolean
+    tuesday: Boolean
+    wednesday: Boolean
+}
+
+input UserFromFileInput {
+    name: String!
+    phone: String!
+}
+
+input UserObj {
+    id: ID!
+    name: String!
+}
+
+input UserPhoneVerificationInput {
+    phone: String!
+    verify: Boolean
+}
+
+input VerifyBusinessTripSubscriptionInput {
+    subscription_verified_at: String
+    trip_id: ID!
+    user_id: ID!
+}
+
+
+scalar Upload

@@ -1,0 +1,21 @@
+mutation UpdateUser($id:ID!,$name:String,$email:String,$phone:String,$device_id:String,$wallet:Float){
+    updateUser(input:{
+        id:  $id
+        name: $name
+        email: $email
+        phone: $phone
+        wallet_balance:$wallet
+        device_id: $device_id
+    }) {
+        id
+        name
+        email
+        phone
+        avatar
+        wallet_balance
+        insurance_balance
+    }
+}
+
+
+

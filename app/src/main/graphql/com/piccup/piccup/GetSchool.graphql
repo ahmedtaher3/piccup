@@ -1,0 +1,6 @@
+query GetSchools($city:ID!){
+  schools( city_id: $city){
+    id
+    name
+  }
+}

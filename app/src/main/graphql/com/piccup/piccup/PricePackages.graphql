@@ -1,0 +1,10 @@
+query PricePackages{
+    pricePackages {
+        id
+        name
+        photo
+        description
+        per_month
+        per_semester
+    }
+}

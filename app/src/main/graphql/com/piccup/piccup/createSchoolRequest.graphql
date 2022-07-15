@@ -1,0 +1,35 @@
+mutation createSchoolRequest($user:ID!,
+    $school:ID!,
+    $grad:String!,
+    $name:String!,
+    $phone:String!,
+    $lat:Float!,
+    $lng:Float!,
+    $address:String!,
+    $pac:ID!,
+    $section:String!,
+    $enter:String!,
+    $exit:String!,
+    $cooment:String,
+    $city:ID!,
+    $status:String!){
+    createSchoolRequest(input:{
+        user_id: $user
+        school_id: $school
+        level: $grad
+        student_name: $name
+        contact_phone: $phone
+        pickup_lat: $lat
+        pickup_lng: $lng
+        pickup_address: $address
+        price_package_id: $pac
+        section: $section
+        status:$status
+        comment: $cooment
+        enter_time: $enter
+        exit_time: $exit
+        city_id:$city
+    }) {
+        id
+    }
+}

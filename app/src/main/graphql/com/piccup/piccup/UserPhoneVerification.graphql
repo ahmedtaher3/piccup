@@ -1,0 +1,8 @@
+mutation UserPhoneVerification ($phone: String!,$verify:Boolean){
+    userPhoneVerification(input: {
+        phone: $phone
+        verify:$verify
+    }) {
+        verificationCode
+    }
+}
