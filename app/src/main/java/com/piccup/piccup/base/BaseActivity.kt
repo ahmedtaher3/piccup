@@ -56,12 +56,14 @@ abstract class BaseActivity<T : ViewDataBinding?> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!BuildConfig.DEBUG) {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE
-            )
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = this.window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = this.resources.getColor(R.color.yellow)
         }
+
         createCustomProgressDialog()
         dataManager = (application as BaseApplication).dataManager!!
         Log.d(TAG, "onCreate: ${dataManager.lang}")

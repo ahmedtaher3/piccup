@@ -129,15 +129,23 @@
                 <TextView
                     android:id="@+id/desc"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:text="West City Club was
  of dedication and
 empowered generation
- a community where they"
+ a community where they
+West City Club was
+ of dedication and
+empowered generation
+ a community where the
+West City Club was
+ of dedication and
+empowered generation
+ a community where the"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/image"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
